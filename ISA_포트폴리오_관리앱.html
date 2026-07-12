@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>ISA 포트폴리오</title>
+<link rel="icon" type="image/png" sizes="512x512" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ISA 포트폴리오">
+<meta name="theme-color" content="#1A2230">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --bg:#F5F5F0;
+    --paper:#FFFFFF;
+    --ink:#1A2230;
+    --ink-soft:#5B6472;
+    --ink-faint:#9AA1AC;
+    --border:#E4E3DA;
+    --accent:#6B4FA0;
+    --accent-soft:#EFEAF7;
+    --up:#C23B33;
+    --up-soft:#FBEAE8;
+    --down:#2F5FA0;
+    --down-soft:#EAF0F8;
+    --radius:16px;
+    --radius-sm:10px;
+    --font-display:'Fraunces', serif;
+    --font-body:'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:80px;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;}
+
+  /* Header */
+  .app-header{padding:8px 2px 20px;}
+  .app-eyebrow{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .app-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:26px;
+    letter-spacing:-.01em;
+    margin:0;
+    line-height:1.2;
+  }
+  .app-sub{font-size:12.5px;color:var(--ink-soft);margin-top:6px;}
+
+  /* Summary */
+  .summary{
+    background:var(--ink);
+    border-radius:var(--radius);
+    padding:22px 20px;
+    color:#F5F5F0;
+    margin-bottom:18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .summary::before{
+    content:'';
+    position:absolute; top:-40%; right:-20%;
+    width:220px; height:220px;
+    background:radial-gradient(circle, rgba(107,79,160,.55), transparent 70%);
+    pointer-events:none;
+  }
+  .summary-label{font-size:11.5px;color:#B9BEC4;letter-spacing:.03em;margin-bottom:4px;}
+  .summary-total{
+    font-family:var(--font-mono);
+    font-size:30px;
+    font-weight:600;
+    letter-spacing:-.02em;
+  }
+  .summary-row{display:flex;gap:22px;margin-top:14px;position:relative;}
+  .summary-item{flex:1;}
+  .summary-item .l{font-size:11px;color:#B9BEC4;margin-bottom:3px;}
+  .summary-item .v{font-family:var(--font-mono);font-size:15px;font-weight:600;}
+  .pos{color:#F0A19A;}
+  .neg{color:#9DBEEA;}
+
+  /* Allocation bar - signature element */
+  .alloc-card{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:16px 18px 18px;
+    margin-bottom:18px;
+  }
+  .alloc-title{font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.02em;}
+  .alloc-bar{
+    display:flex;
+    width:100%;
+    height:14px;
+    border-radius:7px;
+    overflow:hidden;
+    background:var(--border);
+  }
+  .alloc-seg{height:100%;transition:width .3s ease;cursor:pointer;}
+  .alloc-legend{
+    display:flex;flex-wrap:wrap;gap:8px 14px;
+    margin-top:12px;
+  }
+  .legend-item{
+    display:flex;align-items:center;gap:6px;
+    font-size:11.5px;color:var(--ink-soft);
+  }
+  .legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .legend-item b{font-family:var(--font-mono);color:var(--ink);font-weight:600;}
+
+  /* Section label */
+  .section-label{
+    font-size:12px;font-weight:600;color:var(--ink-soft);
+    letter-spacing:.02em;
+    margin:22px 2px 10px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+
+  /* Holding cards */
+  .holding{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:16px;
+    margin-bottom:10px;
+  }
+  .holding-top{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    margin-bottom:12px;
+    gap:10px;
+  }
+  .holding-name-wrap{flex:1;min-width:0;}
+  .holding-name{
+    font-size:15px;font-weight:600;
+    background:transparent;border:none;
+    width:100%;padding:2px 0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    border-bottom:1px solid transparent;
+  }
+  .holding-name:focus{outline:none;border-bottom:1px solid var(--accent);}
+  .holding-ticker{
+    font-family:var(--font-mono);
+    font-size:11px;color:var(--ink-faint);
+    background:transparent;border:none;
+    width:100%;padding:1px 0;margin-top:2px;
+  }
+  .holding-ticker:focus{outline:none;}
+  .holding-value{text-align:right;flex-shrink:0;}
+  .holding-value .val{font-family:var(--font-mono);font-weight:600;font-size:15px;}
+  .holding-value .pl{font-family:var(--font-mono);font-size:12px;margin-top:2px;}
+
+  .holding-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .field{
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    padding:8px 9px;
+  }
+  .field label{
+    display:block;font-size:10px;color:var(--ink-faint);
+    margin-bottom:3px;letter-spacing:.02em;
+  }
+  .field input{
+    width:100%;border:none;background:transparent;
+    font-family:var(--font-mono);font-size:13.5px;font-weight:600;
+    color:var(--ink);padding:0;
+  }
+  .field input:focus{outline:none;}
+
+  .holding-foot{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:8px;border-top:1px dashed var(--border);
+  }
+  .weight-tag{
+    font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);
+    background:var(--accent-soft);color:var(--accent);
+    padding:3px 8px;border-radius:20px;font-weight:600;
+  }
+  .del-btn{
+    background:none;border:none;color:var(--ink-faint);
+    font-size:12px;cursor:pointer;padding:4px 6px;
+    font-family:var(--font-body);
+    display:flex;align-items:center;gap:4px;
+  }
+  .del-btn:hover{color:var(--up);}
+
+  /* Add button */
+  .add-btn{
+    width:100%;
+    background:var(--paper);
+    border:1.5px dashed var(--border);
+    border-radius:var(--radius);
+    padding:14px;
+    color:var(--ink-soft);
+    font-family:var(--font-body);
+    font-size:13.5px;font-weight:600;
+    cursor:pointer;
+    margin-top:4px;
+    transition:border-color .15s, color .15s;
+  }
+  .add-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* Toast */
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#F5F5F0;
+    font-size:12.5px;padding:10px 18px;border-radius:30px;
+    opacity:0;transition:opacity .25s, transform .25s;
+    pointer-events:none;
+    font-family:var(--font-body);
+    z-index:50;
+    white-space:nowrap;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  .empty-state{
+    text-align:center;padding:40px 20px;color:var(--ink-faint);font-size:13px;
+  }
+  .loading{
+    display:flex;align-items:center;justify-content:center;
+    padding:60px 0;color:var(--ink-soft);font-size:13px;gap:8px;
+  }
+  .spin{
+    width:14px;height:14px;border-radius:50%;
+    border:2px solid var(--border);border-top-color:var(--accent);
+    animation:spin .7s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .footnote{
+    font-size:11px;color:var(--ink-faint);text-align:center;margin-top:24px;line-height:1.6;
+  }
+
+  /* ==== ISA 전용 ==== */
+  .field select{
+    width:100%;border:none;background:transparent;
+    font-family:var(--font-body);font-size:13px;font-weight:600;
+    color:var(--ink);padding:0;appearance:none;-webkit-appearance:none;
+  }
+  .field select:focus{outline:none;}
+  .holding-grid.isa{grid-template-columns:repeat(3,1fr);}
+  .bucket-tag{
+    font-family:var(--font-body);font-size:11px;font-weight:600;
+    padding:3px 8px;border-radius:20px;color:#fff;
+  }
+  .weight-tag.excluded{background:var(--bg);color:var(--ink-faint);}
+
+  /* 버킷 비중 점검 카드 */
+  .bucket-row{margin-bottom:12px;}
+  .bucket-row:last-child{margin-bottom:2px;}
+  .bucket-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:11.5px;margin-bottom:5px;
+  }
+  .bucket-name{display:flex;align-items:center;gap:6px;color:var(--ink-soft);font-weight:600;}
+  .bucket-nums{font-family:var(--font-mono);font-size:11.5px;color:var(--ink);}
+  .bucket-nums .target{color:var(--ink-faint);font-weight:400;}
+  .bucket-nums.warn-over{color:var(--up);font-weight:600;}
+  .bucket-nums.warn-under{color:var(--down);font-weight:600;}
+  .bucket-track{position:relative;height:9px;border-radius:5px;background:var(--border);}
+  .bucket-fill{position:absolute;left:0;top:0;bottom:0;border-radius:5px;transition:width .3s ease;}
+  .bucket-tick{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.5;border-radius:1px;}
+  .bucket-note{
+    font-size:10.5px;color:var(--ink-faint);margin-top:10px;line-height:1.5;
+    padding-top:8px;border-top:1px dashed var(--border);
+  }
+  .target-sum{font-family:var(--font-mono);font-size:10.5px;}
+  .target-sum.bad{color:var(--up);font-weight:600;}
+
+  .gh-cfg-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+  }
+  #gh-sync-card .field input{
+    width:100%;border:none;background:transparent;
+    font-family:var(--font-mono);font-size:12.5px;font-weight:600;
+    color:var(--ink);padding:0;
+  }
+  #gh-sync-card .field input::placeholder{color:var(--ink-faint);font-weight:400;}
+  #gh-sync-card .field input:focus{outline:none;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="app-header">
+    <div class="app-eyebrow">ISA · 동적 혼합형</div>
+    <h1 class="app-title">포트폴리오 원장</h1>
+    <div class="app-sub" id="last-updated">불러오는 중...</div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-label">총 평가금액</div>
+    <div class="summary-total" id="sum-total">-</div>
+    <div class="summary-row">
+      <div class="summary-item">
+        <div class="l">총 손익</div>
+        <div class="v" id="sum-pl">-</div>
+      </div>
+      <div class="summary-item">
+        <div class="l">총 수익률</div>
+        <div class="v" id="sum-pl-pct">-</div>
+      </div>
+      <div class="summary-item">
+        <div class="l">보유 종목</div>
+        <div class="v" id="sum-count">-</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alloc-card">
+    <div class="alloc-title" style="display:flex;justify-content:space-between;align-items:baseline;">
+      <span>전략 비중 점검 <span style="color:var(--ink-faint);font-weight:400;">(존버 제외)</span></span>
+      <span class="target-sum" id="target-sum"></span>
+    </div>
+    <div id="bucket-list"></div>
+    <div class="bucket-note" id="bucket-note"></div>
+  </div>
+
+  <div class="alloc-card">
+    <div class="alloc-title">종목별 배분</div>
+    <div class="alloc-bar" id="alloc-bar"></div>
+    <div class="alloc-legend" id="alloc-legend"></div>
+  </div>
+
+  <div class="alloc-card" id="sync-card">
+    <div class="alloc-title">GitHub 연동 (토큰 불필요)</div>
+    <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:10px;">
+      아래 버튼을 누르면 현재 종목 데이터가 <b>holdings.json</b> 파일로 다운로드됩니다.
+      ISA 모니터링 저장소 페이지에 이 파일을 끌어다 놓으면(드래그 앤 드롭) 기존 파일이 자동으로
+      교체되며, 별도 토큰이나 로그인 절차 없이 그대로 커밋됩니다.
+    </div>
+    <button class="add-btn" id="export-btn">⬇ holdings.json 다운로드</button>
+    <div style="font-size:10.5px;color:var(--ink-faint);margin-top:8px;margin-bottom:14px;line-height:1.5;">
+      순서: 다운로드 → GitHub 저장소 페이지 열기 → 파일 목록 위에 다운로드한 파일을 드래그 →
+      "Commit changes" 버튼 클릭.
+    </div>
+    <div style="border-top:1px dashed var(--border);padding-top:12px;">
+      <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:10px;">
+        다른 기기·다른 저장소에서 쓰던 holdings.json 파일이 있다면 여기로 불러올 수 있습니다.
+        불러오면 <b>현재 목록 전체가 파일 내용으로 교체</b>됩니다.
+      </div>
+      <button class="add-btn" id="import-btn">📤 holdings.json 불러오기</button>
+      <input type="file" id="import-file-input" accept="application/json,.json" style="display:none;">
+    </div>
+  </div>
+
+  <div class="alloc-card" id="gh-sync-card">
+    <div class="alloc-title">폰 ↔ PC 자동 동기화 (비공개 저장소)</div>
+    <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:10px;">
+      GitHub 저장소의 holdings.json을 토큰으로 직접 읽어옵니다. PC에서 다운로드→커밋한 뒤,
+      폰에서는 이 카드의 버튼 한 번으로 최신 상태를 바로 가져올 수 있습니다.
+      <b>토큰은 이 기기의 브라우저에만 저장</b>되며 외부로 전송되지 않습니다.
+    </div>
+    <div class="gh-cfg-grid">
+      <div class="field"><label>GitHub 사용자명</label><input type="text" id="gh-owner" placeholder="3260370-commits"></div>
+      <div class="field"><label>저장소 이름</label><input type="text" id="gh-repo" placeholder="isa-monitor"></div>
+      <div class="field"><label>브랜치</label><input type="text" id="gh-branch" placeholder="main"></div>
+      <div class="field"><label>파일 경로</label><input type="text" id="gh-path" placeholder="holdings.json"></div>
+    </div>
+    <div class="field" style="margin-top:8px;">
+      <label>Personal Access Token (Contents: Read 권한, 이 저장소 전용 권장)</label>
+      <input type="password" id="gh-token" placeholder="github_pat_...">
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px;">
+      <button class="add-btn" id="gh-save-btn" style="flex:1;">💾 설정 저장</button>
+      <button class="add-btn" id="gh-fetch-btn" style="flex:1;">🔄 GitHub에서 최신 데이터 가져오기</button>
+    </div>
+    <div style="font-size:10.5px;color:var(--ink-faint);margin-top:10px;line-height:1.5;">
+      이 앱을 공개 페이지로 배포할 계획이라면 이 기능은 사용하지 마세요 — 토큰이 저장된
+      브라우저의 개발자도구를 통해 노출될 수 있습니다.
+    </div>
+  </div>
+
+  <div class="section-label">
+    <span>보유 종목</span>
+  </div>
+
+  <div id="holdings-list">
+    <div class="loading"><div class="spin"></div> 저장된 데이터 불러오는 중</div>
+  </div>
+
+  <button class="add-btn" id="add-btn">+ 종목 추가</button>
+
+  <div class="footnote">
+    수량 · 매입가 · 현재가 · 버킷 · 목표비중을 직접 입력하면 자동으로 저장됩니다.<br>
+    버킷을 '존버'로 바꾸면 전략 비중 계산에서 자동으로 제외됩니다.<br>
+    현재가는 증권사 앱 화면을 참고해 수동으로 갱신해주세요.
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+const PALETTE = ['#6B4FA0','#C23B33','#2F5FA0','#B8862F','#1F6F54','#3E8E7E','#A0522F','#5B6472'];
+const BUCKETS = ['성장','트레이딩','배당','방어','파킹','존버'];
+const BUCKET_COLORS = {
+  '성장':'#1F6F54', '트레이딩':'#C23B33', '배당':'#B8862F',
+  '방어':'#2F5FA0', '파킹':'#5B6472', '존버':'#9AA1AC'
+};
+const DRIFT_ALERT = 5; // 목표 대비 ±5%p 이탈 시 경고 (리밸런싱 트리거)
+const LS_KEY = 'isa_holdings';           // 연금저축 앱과 저장공간 분리
+const LS_TIME = 'isa_lastUpdated';
+
+let holdings = [];
+
+function downloadHoldingsJson(){
+  const out = holdings.map(h => ({
+    id: h.id,
+    name: h.name,
+    ticker: h.ticker,
+    shares: parseFloat(h.shares) || 0,
+    avgPrice: parseFloat(h.avgPrice) || 0,
+    currentPrice: parseFloat(h.currentPrice) || 0,
+    bucket: h.bucket,
+    targetWeight: parseFloat(h.targetWeight) || 0,
+    rebalance: h.bucket !== '존버'
+  }));
+  const json = JSON.stringify(out, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'holdings.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  flashToast('holdings.json 다운로드됨');
+}
+const LS_GH_CFG = 'isa_github_cfg';
+
+function loadGithubConfigIntoForm(){
+  try{
+    const raw = localStorage.getItem(LS_GH_CFG);
+    if(!raw) return;
+    const cfg = JSON.parse(raw);
+    document.getElementById('gh-owner').value = cfg.owner || '';
+    document.getElementById('gh-repo').value = cfg.repo || '';
+    document.getElementById('gh-branch').value = cfg.branch || 'main';
+    document.getElementById('gh-path').value = cfg.path || 'holdings.json';
+    document.getElementById('gh-token').value = cfg.token || '';
+  }catch(e){ /* 무시 */ }
+}
+
+function saveGithubConfigFromForm(){
+  const cfg = {
+    owner: document.getElementById('gh-owner').value.trim(),
+    repo: document.getElementById('gh-repo').value.trim(),
+    branch: document.getElementById('gh-branch').value.trim() || 'main',
+    path: document.getElementById('gh-path').value.trim() || 'holdings.json',
+    token: document.getElementById('gh-token').value.trim(),
+  };
+  localStorage.setItem(LS_GH_CFG, JSON.stringify(cfg));
+  flashToast('GitHub 설정 저장됨 (이 기기에만)');
+  return cfg;
+}
+
+function base64ToUtf8(b64){
+  const clean = b64.replace(/\n/g, '');
+  const bytes = Uint8Array.from(atob(clean), c => c.charCodeAt(0));
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+async function fetchFromGithub(){
+  const cfg = {
+    owner: document.getElementById('gh-owner').value.trim(),
+    repo: document.getElementById('gh-repo').value.trim(),
+    branch: document.getElementById('gh-branch').value.trim() || 'main',
+    path: document.getElementById('gh-path').value.trim() || 'holdings.json',
+    token: document.getElementById('gh-token').value.trim(),
+  };
+  if(!cfg.owner || !cfg.repo || !cfg.token){
+    flashToast('사용자명·저장소·토큰을 먼저 입력해주세요');
+    return;
+  }
+
+  const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(cfg.path)}?ref=${encodeURIComponent(cfg.branch)}`;
+
+  try{
+    const res = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${cfg.token}`,
+        'Accept': 'application/vnd.github+json',
+      }
+    });
+
+    if(!res.ok){
+      const hints = {
+        401: '토큰이 잘못되었거나 만료되었습니다.',
+        403: '권한 부족 — 토큰에 이 저장소의 Contents:Read 권한이 있는지 확인해주세요.',
+        404: '저장소/파일 경로를 찾을 수 없습니다. 사용자명·저장소·경로를 확인해주세요.',
+      };
+      throw new Error(`HTTP ${res.status} — ${hints[res.status] || '가져오기 실패'}`);
+    }
+
+    const data = await res.json();
+    const text = base64ToUtf8(data.content);
+    const parsed = JSON.parse(text);
+    if(!Array.isArray(parsed)) throw new Error('형식이 올바르지 않습니다 (배열이어야 함)');
+
+    if(holdings.length > 0 && !confirm(
+      `현재 목록(${holdings.length}개 종목)을 지우고 GitHub 파일(${parsed.length}개 종목)로 교체할까요?`
+    )){
+      return;
+    }
+
+    holdings = parsed.map((h, i)=>{
+      const bucket = BUCKETS.includes(h.bucket) ? h.bucket : '성장';
+      return {
+        id: h.id || ('h' + Date.now() + '_' + i),
+        name: h.name || '이름 없음',
+        ticker: h.ticker || '',
+        shares: h.shares ?? 0,
+        avgPrice: h.avgPrice ?? 0,
+        currentPrice: h.currentPrice ?? 0,
+        bucket,
+        targetWeight: bucket === '존버' ? 0 : (h.targetWeight ?? 0),
+      };
+    });
+
+    render();
+    saveHoldings(true);
+    flashToast(`GitHub에서 ${holdings.length}개 종목 가져옴`);
+  }catch(err){
+    flashToast('가져오기 실패: ' + err.message);
+  }
+}
+
+document.getElementById('gh-save-btn').addEventListener('click', saveGithubConfigFromForm);
+document.getElementById('gh-fetch-btn').addEventListener('click', async ()=>{
+  saveGithubConfigFromForm();  // 가져오기 전에 현재 입력값 저장
+  await fetchFromGithub();
+});
+loadGithubConfigIntoForm();
+
+document.getElementById('export-btn').addEventListener('click', downloadHoldingsJson);
+
+document.getElementById('import-btn').addEventListener('click', ()=>{
+  document.getElementById('import-file-input').click();
+});
+
+document.getElementById('import-file-input').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (evt)=>{
+    try{
+      const parsed = JSON.parse(evt.target.result);
+      if(!Array.isArray(parsed)) throw new Error('형식이 올바르지 않습니다 (배열이어야 함)');
+
+      if(holdings.length > 0 && !confirm(
+        `현재 목록(${holdings.length}개 종목)을 지우고 파일 내용(${parsed.length}개 종목)으로 교체할까요?`
+      )){
+        e.target.value = '';
+        return;
+      }
+
+      // 구버전/타 계좌 파일 호환: bucket·targetWeight 없으면 기본값 부여
+      holdings = parsed.map((h, i)=>{
+        const bucket = BUCKETS.includes(h.bucket) ? h.bucket : '성장';
+        return {
+          id: h.id || ('h' + Date.now() + '_' + i),
+          name: h.name || '이름 없음',
+          ticker: h.ticker || '',
+          shares: h.shares ?? 0,
+          avgPrice: h.avgPrice ?? 0,
+          currentPrice: h.currentPrice ?? 0,
+          bucket,
+          targetWeight: bucket === '존버' ? 0 : (h.targetWeight ?? 0),
+        };
+      });
+
+      render();
+      saveHoldings(true);
+      flashToast(`${holdings.length}개 종목 불러옴`);
+    }catch(err){
+      flashToast('불러오기 실패: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+
+  e.target.value = ''; // 같은 파일 다시 선택 가능하도록 초기화
+});
+
+function fmtWon(n){ return (n<0?'-':'') + Math.round(Math.abs(n)).toLocaleString('ko-KR') + '원'; }
+function fmtPct(n){ return (n>0?'+':'') + n.toFixed(2) + '%'; }
+
+function calcRow(h){
+  const shares = parseFloat(h.shares) || 0;
+  const avg = parseFloat(h.avgPrice) || 0;
+  const cur = parseFloat(h.currentPrice) || 0;
+  const value = shares * cur;
+  const pl = (cur - avg) * shares;
+  const plPct = avg > 0 ? ((cur - avg) / avg) * 100 : 0;
+  return { value, pl, plPct };
+}
+
+function isStrategic(h){ return h.bucket !== '존버'; }
+
+function computeTotals(){
+  let total = 0, strategic = 0;
+  holdings.forEach(h => {
+    const v = calcRow(h).value;
+    total += v;
+    if(isStrategic(h)) strategic += v;
+  });
+  return { total, strategic };
+}
+
+async function loadHoldings(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw){
+      holdings = JSON.parse(raw);
+      // 구버전 데이터 보정
+      holdings.forEach(h => {
+        if(!h.bucket) h.bucket = '성장';
+        if(h.targetWeight === undefined) h.targetWeight = 0;
+      });
+    } else {
+      holdings = seedData();
+      await saveHoldings(false);
+    }
+  }catch(e){
+    holdings = seedData();
+    await saveHoldings(false);
+  }
+  render();
+}
+
+function seedData(){
+  // 공개 저장소(GitHub Pages)로 배포될 수 있으므로 실제 보유 종목 숫자를 코드에 넣지 않습니다.
+  // 처음 여는 브라우저는 빈 상태로 시작하고, "+ 종목 추가" 또는 "holdings.json 불러오기"로 채우면 됩니다.
+  // (이미 사용 중이던 브라우저는 저장된 localStorage 데이터를 그대로 불러오므로 영향 없습니다.)
+  return [];
+}
+
+let saveTimer = null;
+async function saveHoldings(showToast=true){
+  try{
+    localStorage.setItem(LS_KEY, JSON.stringify(holdings));
+    localStorage.setItem(LS_TIME, new Date().toISOString());
+    if(showToast) flashToast('저장됨');
+    updateLastUpdated();
+  }catch(e){
+    if(showToast) flashToast('저장 실패 — 다시 시도해주세요');
+  }
+}
+
+function scheduleSave(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>saveHoldings(true), 500);
+}
+
+function flashToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=> t.classList.remove('show'), 1600);
+}
+
+async function updateLastUpdated(){
+  try{
+    const raw = localStorage.getItem(LS_TIME);
+    if(raw){
+      const d = new Date(raw);
+      document.getElementById('last-updated').textContent =
+        '마지막 저장 · ' + d.toLocaleDateString('ko-KR') + ' ' + d.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+    } else {
+      document.getElementById('last-updated').textContent = '아직 저장되지 않음';
+    }
+  }catch(e){
+    document.getElementById('last-updated').textContent = '아직 저장되지 않음';
+  }
+}
+
+function render(){
+  const { total, strategic } = computeTotals();
+  let totalPl = 0, totalCost = 0;
+
+  holdings.forEach(h=>{
+    const {pl} = calcRow(h);
+    totalPl += pl;
+    totalCost += (parseFloat(h.avgPrice)||0) * (parseFloat(h.shares)||0);
+  });
+  const totalPlPct = totalCost > 0 ? (totalPl/totalCost)*100 : 0;
+
+  document.getElementById('sum-total').textContent = fmtWon(total);
+  const plEl = document.getElementById('sum-pl');
+  plEl.textContent = fmtWon(totalPl);
+  plEl.className = 'v ' + (totalPl >= 0 ? 'pos' : 'neg');
+  const plPctEl = document.getElementById('sum-pl-pct');
+  plPctEl.textContent = fmtPct(totalPlPct);
+  plPctEl.className = 'v ' + (totalPlPct >= 0 ? 'pos' : 'neg');
+  document.getElementById('sum-count').textContent = holdings.length + '개';
+
+  renderBuckets(strategic, total);
+  renderAlloc(total);
+  renderList(total, strategic);
+}
+
+function renderBuckets(strategic, total){
+  const list = document.getElementById('bucket-list');
+  const note = document.getElementById('bucket-note');
+  const sumEl = document.getElementById('target-sum');
+  list.innerHTML = '';
+
+  // 버킷별 현재 비중 / 목표 비중 집계 (존버 제외)
+  const cur = {}, tgt = {};
+  BUCKETS.forEach(b => { cur[b]=0; tgt[b]=0; });
+  holdings.forEach(h=>{
+    if(!isStrategic(h)) return;
+    cur[h.bucket] += calcRow(h).value;
+    tgt[h.bucket] += parseFloat(h.targetWeight)||0;
+  });
+
+  let targetTotal = 0;
+  BUCKETS.forEach(b=>{ targetTotal += tgt[b]; });
+  sumEl.textContent = '목표 합계 ' + targetTotal.toFixed(0) + '%';
+  sumEl.className = 'target-sum' + (Math.round(targetTotal)===100 ? '' : ' bad');
+
+  const maxScale = 70; // 막대 스케일 상한 (%)
+  BUCKETS.forEach(b=>{
+    if(b==='존버') return;
+    if(cur[b]===0 && tgt[b]===0) return;
+    const curPct = strategic>0 ? (cur[b]/strategic)*100 : 0;
+    const drift = curPct - tgt[b];
+    let numsClass = 'bucket-nums';
+    let driftTxt = '';
+    if(tgt[b]>0 && Math.abs(drift) >= DRIFT_ALERT){
+      numsClass += drift>0 ? ' warn-over' : ' warn-under';
+      driftTxt = ' (' + (drift>0?'+':'') + drift.toFixed(1) + '%p)';
+    }
+    const row = document.createElement('div');
+    row.className = 'bucket-row';
+    row.innerHTML = `
+      <div class="bucket-head">
+        <span class="bucket-name"><span class="legend-dot" style="background:${BUCKET_COLORS[b]}"></span>${b}</span>
+        <span class="${numsClass}">${curPct.toFixed(1)}%${driftTxt} <span class="target">/ 목표 ${tgt[b].toFixed(0)}%</span></span>
+      </div>
+      <div class="bucket-track">
+        <div class="bucket-fill" style="width:${Math.min(curPct/maxScale*100,100)}%;background:${BUCKET_COLORS[b]}"></div>
+        <div class="bucket-tick" style="left:${Math.min(tgt[b]/maxScale*100,100)}%"></div>
+      </div>
+    `;
+    list.appendChild(row);
+  });
+
+  // 존버 안내
+  let zomVal = 0;
+  holdings.forEach(h=>{ if(!isStrategic(h)) zomVal += calcRow(h).value; });
+  const zomPct = total>0 ? (zomVal/total)*100 : 0;
+  note.textContent = zomVal>0
+    ? `존버 종목 ${fmtWon(zomVal)} (전체의 ${zomPct.toFixed(1)}%)은 전략 비중 계산에서 제외됩니다. 세로선(|)은 목표 비중, ±${DRIFT_ALERT}%p 이상 이탈 시 색상 경고가 표시됩니다.`
+    : `세로선(|)은 목표 비중 위치이며, ±${DRIFT_ALERT}%p 이상 이탈 시 색상 경고가 표시됩니다.`;
+}
+
+function renderAlloc(total){
+  const bar = document.getElementById('alloc-bar');
+  const legend = document.getElementById('alloc-legend');
+  bar.innerHTML = '';
+  legend.innerHTML = '';
+
+  if(holdings.length === 0 || total === 0){
+    bar.innerHTML = '<div style="width:100%;background:var(--border);"></div>';
+    return;
+  }
+
+  holdings.forEach((h,i)=>{
+    const {value} = calcRow(h);
+    const weight = total > 0 ? (value/total)*100 : 0;
+    if(weight <= 0) return;
+    const color = BUCKET_COLORS[h.bucket] || PALETTE[i % PALETTE.length];
+
+    const seg = document.createElement('div');
+    seg.className = 'alloc-seg';
+    seg.style.width = weight + '%';
+    seg.style.background = color;
+    seg.style.opacity = isStrategic(h) ? '1' : '.45';
+    seg.title = h.name + ' · ' + weight.toFixed(1) + '%';
+    bar.appendChild(seg);
+
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = `<span class="legend-dot" style="background:${color};opacity:${isStrategic(h)?1:.45}"></span>${h.name} <b>${weight.toFixed(1)}%</b>`;
+    legend.appendChild(item);
+  });
+}
+
+function renderList(total, strategic){
+  const list = document.getElementById('holdings-list');
+  list.innerHTML = '';
+
+  if(holdings.length === 0){
+    list.innerHTML = '<div class="empty-state">보유 종목이 없습니다. 아래 버튼으로 추가해주세요.</div>';
+    return;
+  }
+
+  holdings.forEach((h)=>{
+    const {value, pl, plPct} = calcRow(h);
+    const strat = isStrategic(h);
+    const weight = strat
+      ? (strategic > 0 ? (value/strategic)*100 : 0)
+      : (total > 0 ? (value/total)*100 : 0);
+
+    const options = BUCKETS.map(b =>
+      `<option value="${b}" ${h.bucket===b?'selected':''}>${b}</option>`
+    ).join('');
+
+    const card = document.createElement('div');
+    card.className = 'holding';
+    card.innerHTML = `
+      <div class="holding-top">
+        <div class="holding-name-wrap">
+          <input class="holding-name" value="${escapeAttr(h.name)}" data-field="name" data-id="${h.id}" placeholder="종목명">
+          <input class="holding-ticker" value="${escapeAttr(h.ticker||'')}" data-field="ticker" data-id="${h.id}" placeholder="종목코드 (선택)">
+        </div>
+        <div class="holding-value">
+          <div class="val">${fmtWon(value)}</div>
+          <div class="pl ${pl>=0?'pos':'neg'}">${fmtWon(pl)} (${fmtPct(plPct)})</div>
+        </div>
+      </div>
+      <div class="holding-grid isa">
+        <div class="field">
+          <label>잔고(수량)</label>
+          <input type="text" inputmode="decimal" value="${h.shares}" data-field="shares" data-id="${h.id}">
+        </div>
+        <div class="field">
+          <label>매입가</label>
+          <input type="text" inputmode="decimal" value="${h.avgPrice}" data-field="avgPrice" data-id="${h.id}">
+        </div>
+        <div class="field">
+          <label>현재가</label>
+          <input type="text" inputmode="decimal" value="${h.currentPrice}" data-field="currentPrice" data-id="${h.id}">
+        </div>
+        <div class="field">
+          <label>버킷</label>
+          <select data-field="bucket" data-id="${h.id}">${options}</select>
+        </div>
+        <div class="field">
+          <label>목표비중 %</label>
+          <input type="text" inputmode="decimal" value="${h.targetWeight}" data-field="targetWeight" data-id="${h.id}" ${strat?'':'disabled'}>
+        </div>
+      </div>
+      <div class="holding-foot">
+        <span>
+          <span class="bucket-tag" style="background:${BUCKET_COLORS[h.bucket]||'#5B6472'}">${h.bucket}</span>
+          <span class="weight-tag ${strat?'':'excluded'}" style="margin-left:6px;">${strat ? '전략 비중 '+weight.toFixed(1)+'%' : '전략 제외 · 전체 '+weight.toFixed(1)+'%'}</span>
+        </span>
+        <button class="del-btn" data-id="${h.id}">삭제</button>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+
+  list.querySelectorAll('input').forEach(inp=>{
+    inp.addEventListener('input', onFieldChange);
+  });
+  list.querySelectorAll('select').forEach(sel=>{
+    sel.addEventListener('change', onFieldChange);
+  });
+  list.querySelectorAll('.del-btn').forEach(btn=>{
+    btn.addEventListener('click', onDelete);
+  });
+}
+
+function escapeAttr(s){
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
+function onFieldChange(e){
+  const id = e.target.dataset.id;
+  const field = e.target.dataset.field;
+  const h = holdings.find(x=>x.id===id);
+  if(!h) return;
+  h[field] = e.target.value;
+
+  if(field === 'bucket' && e.target.value === '존버'){
+    h.targetWeight = 0;   // 존버 → 전략 제외 + 목표비중 0
+  }
+
+  if(['shares','avgPrice','currentPrice','targetWeight','bucket'].includes(field)){
+    render();
+    if(field !== 'bucket') refocus(id, field);
+  }
+  scheduleSave();
+}
+
+function refocus(id, field){
+  requestAnimationFrame(()=>{
+    const sel = `input[data-id="${id}"][data-field="${field}"]`;
+    const el = document.querySelector(sel);
+    if(el){
+      el.focus();
+      const v = el.value;
+      el.setSelectionRange(v.length, v.length);
+    }
+  });
+}
+
+function onDelete(e){
+  const id = e.target.dataset.id;
+  holdings = holdings.filter(h=>h.id !== id);
+  render();
+  saveHoldings(true);
+}
+
+document.getElementById('add-btn').addEventListener('click', ()=>{
+  const newHolding = {
+    id: 'h' + Date.now(),
+    name: '새 종목',
+    ticker: '',
+    shares: 0,
+    avgPrice: 0,
+    currentPrice: 0,
+    bucket: '성장',
+    targetWeight: 0
+  };
+  holdings.push(newHolding);
+  render();
+  saveHoldings(true);
+  requestAnimationFrame(()=>{
+    const el = document.querySelector(`input[data-id="${newHolding.id}"][data-field="name"]`);
+    if(el){ el.focus(); el.select(); }
+  });
+});
+
+loadHoldings();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {
+      // GitHub Pages가 아닌 file:// 등에서 열면 등록 실패할 수 있음 - 무시해도 앱 사용에는 지장 없음
+    });
+  });
+}
+</script>
+</body>
+</html>
