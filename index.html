@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -652,6 +653,7 @@ async function loadHoldings(){
     holdings = seedData();
     await saveHoldings(false);
   }
+  updateLastUpdated();
   render();
 }
 
